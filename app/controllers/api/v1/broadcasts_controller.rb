@@ -1,0 +1,52 @@
+class Api::V1::BroadcastsController < ApplicationController
+
+    def index 
+        # @pi_names = PiName.all(:order => 'pi_names.last_name DESC')
+        @broadcasts = Broadcast.all
+        render json: @broadcasts
+      end 
+    
+    
+    def create
+        @broadcast = Broadcast.new(name: params[:name], pin: params[:pin], broadcaster_id: params[:broadcaster_id])
+        if @broadcast.save 
+            render json: @broadcast
+        else
+            render json: {error: "broadcast could not be created!"}, status: 400
+        end
+    end
+       
+    def show 
+        @broadcast = Broadcast.find_by(id: params[:id])
+        if @broadcast
+          render json: @broadcast
+        else 
+          render json: {error: "broadcast not found"}, status: 404
+        end
+    end
+
+    def update
+        @broadcast = Broadcast.find_by(id: params[:id])
+        if @broadcast.update(saved: params[:saved])
+          render json: @broadcast
+        else 
+          render json: {error: "broadcast not found"}, status: 404
+        end 
+    end
+
+    def get_last_broadcast
+        @broadcast = Broadcast.last
+        render json: @broadcast
+    end
+
+    private 
+
+    def user_params 
+        params.require(:broadcast).permit(:name, :pin, :broadcaster_id, :saved)
+    end 
+
+    
+
+end
+
+

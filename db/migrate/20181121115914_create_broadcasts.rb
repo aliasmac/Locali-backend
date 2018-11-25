@@ -4,6 +4,7 @@ class CreateBroadcasts < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :pin
       t.integer :broadcaster_id
+      t.boolean :saved, default: false 
     
       t.timestamps
     end

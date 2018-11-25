@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-    
+    has_secure_password
+
     has_many :broadcasts, class_name: 'Broadcast', foreign_key: 'broadcaster_id'
     has_many :outbound_messages, through: :broadcasts, :source => :broadcast
 
