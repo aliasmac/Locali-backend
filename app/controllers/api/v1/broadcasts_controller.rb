@@ -39,10 +39,22 @@ class Api::V1::BroadcastsController < ApplicationController
         render json: @broadcast
     end
 
+    def get_broadcastbypin 
+        puts "HELLLLOOOOOO FROOOOM GET_BROADCAST_BY_PIN ROUTE: #{params}"
+        @broadcast = Broadcast.find_by(pin: params[:pin])
+        render json: @broadcast
+    end
+
+
+    def destroy
+        @broadcast = Broadcast.find(params[:id])
+        @broadcast.destroy
+    end
+
     private 
 
     def user_params 
-        params.require(:broadcast).permit(:name, :pin, :broadcaster_id, :saved)
+        params.require(:broadcast).permit(:name, :pin, :broadcaster_id, :saved, :pin)
     end 
 
     

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get 'validate', to: 'users#validate'
       get 'userbroadcasts', to: 'users#get_broadcasts'
       get 'lastbroadcast', to: 'broadcasts#get_last_broadcast'
+      post 'broadcastbypin', to: 'broadcasts#get_broadcastbypin'
 
     end 
   end 

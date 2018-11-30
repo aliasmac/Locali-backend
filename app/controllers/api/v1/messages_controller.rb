@@ -18,10 +18,22 @@ class Api::V1::MessagesController < ApplicationController
         end
     end
 
+    def destroy
+        @message = Message.find(params[:id])
+        @message.destroy
+    end
+
+    def update 
+        @message = Message.find(params[:id])
+        @message.update(content: params[:content])
+        render json: @message
+    end 
+
     private 
 
     def user_params 
-        params.require(:message).permit(:content, :latitude, :longitude, :broadcast_id)
+        params.require(:message).permit(:content, :broadcast_id, :geofence)
     end 
 
 end
+
