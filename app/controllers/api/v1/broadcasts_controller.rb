@@ -8,14 +8,16 @@ class Api::V1::BroadcastsController < ApplicationController
     
     
     def create
-        @broadcast = Broadcast.new(name: params[:name], pin: params[:pin], broadcaster_id: params[:broadcaster_id])
+        puts "HELLLLOOOOOO FROOOOM CREATE: #{params}"
+        @broadcast = Broadcast.new(name: params[:name], code: params[:code], broadcaster_id: params[:broadcaster_id])
         if @broadcast.save 
             render json: @broadcast
         else
             render json: {error: "broadcast could not be created!"}, status: 400
         end
     end
-       
+    
+    
     def show 
         @broadcast = Broadcast.find_by(id: params[:id])
         if @broadcast
@@ -25,6 +27,7 @@ class Api::V1::BroadcastsController < ApplicationController
         end
     end
 
+    
     def update
         @broadcast = Broadcast.find_by(id: params[:id])
         if @broadcast.update(saved: params[:saved])
@@ -41,8 +44,12 @@ class Api::V1::BroadcastsController < ApplicationController
 
     def get_broadcastbypin 
         puts "HELLLLOOOOOO FROOOOM GET_BROADCAST_BY_PIN ROUTE: #{params}"
-        @broadcast = Broadcast.find_by(pin: params[:pin])
-        render json: @broadcast
+        @broadcast = Broadcast.find_by(code: params[:code])
+        if @broadcast
+            render json: @broadcast
+        else
+            render json: {error: "broadcast not found"}, status: 404
+        end
     end
 
 
@@ -54,7 +61,7 @@ class Api::V1::BroadcastsController < ApplicationController
     private 
 
     def user_params 
-        params.require(:broadcast).permit(:name, :pin, :broadcaster_id, :saved, :pin)
+        params.require(:broadcast).permit(:name, :pin, :broadcaster_id, :saved, :code)
     end 
 
     

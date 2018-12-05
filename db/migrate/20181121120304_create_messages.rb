@@ -4,6 +4,7 @@ class CreateMessages < ActiveRecord::Migration[5.2]
       t.string :content
       t.text :geofence
       t.integer :broadcast_id
+      t.boolean :selected, default: false 
       
       t.timestamps
     end

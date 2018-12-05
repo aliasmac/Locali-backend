@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2018_11_21_131814) do
 
   create_table "broadcasts", force: :cascade do |t|
     t.string "name"
-    t.integer "pin"
+    t.string "code"
     t.integer "broadcaster_id"
     t.boolean "saved", default: false
     t.datetime "created_at", null: false
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2018_11_21_131814) do
     t.string "content"
     t.text "geofence"
     t.integer "broadcast_id"
+    t.boolean "selected", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

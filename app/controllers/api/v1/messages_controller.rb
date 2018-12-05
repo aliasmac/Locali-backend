@@ -32,7 +32,7 @@ class Api::V1::MessagesController < ApplicationController
     private 
 
     def user_params 
-        params.require(:message).permit(:content, :broadcast_id, :geofence)
+        params.require(:message).permit(:content, :broadcast_id, :geofence, :selected)
     end 
 
 end
