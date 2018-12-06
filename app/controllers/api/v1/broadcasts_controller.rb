@@ -4,7 +4,7 @@ class Api::V1::BroadcastsController < ApplicationController
         # @pi_names = PiName.all(:order => 'pi_names.last_name DESC')
         @broadcasts = Broadcast.all
         render json: @broadcasts
-      end 
+    end 
     
     
     def create

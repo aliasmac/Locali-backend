@@ -3,11 +3,11 @@ class UserSerializer < ActiveModel::Serializer
   has_many :broadcasts 
 
   class BroadcastSerializer < ActiveModel::Serializer
-    attributes :id, :name, :pin, :broadcaster_id, :messages 
+    attributes :id, :name, :code, :broadcaster_id, :messages 
     has_many :messages 
 
     class MessageSerializer < ActiveModel::Serializer
-      attributes :id, :content, :geofence, :broadcast_id
+      attributes :id, :content, :geofence, :broadcast_id, :selected
     end
 
   end
