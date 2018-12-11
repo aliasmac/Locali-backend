@@ -37,11 +37,6 @@ class Api::V1::BroadcastsController < ApplicationController
         end 
     end
 
-    def get_last_broadcast
-        @broadcast = Broadcast.last
-        render json: @broadcast
-    end
-
     def get_broadcastbypin 
         puts "HELLLLOOOOOO FROOOOM GET_BROADCAST_BY_PIN ROUTE: #{params}"
         @broadcast = Broadcast.find_by(code: params[:code])

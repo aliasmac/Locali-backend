@@ -21,7 +21,7 @@ class ApplicationController < ActionController::API
     end
       
     def secret
-        ENV["LOCALI_SECRET_KEY"]
+        "secret"
     end
 
 

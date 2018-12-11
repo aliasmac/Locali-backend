@@ -83,3 +83,13 @@ production:
   database: locali-backend_production
   username: locali-backend
   password: <%= ENV['LOCALI-BACKEND_DATABASE_PASSWORD'] %>
+
+
+
+
+
+
+
+
+
+  
